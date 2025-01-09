@@ -18,7 +18,22 @@ def complex-abs-squared [a] {
     ($a.0 * $a.0) + ($a.1 * $a.1) 
 }
 
-def escape_time [x: float y: float max_iter: int] : nothing -> int {
+export def cnt2char []: int -> string {
+    let symbols = "MW2a_. "
+    let ns = ($symbols | str length) - 1
+    let idx = ($in / 255.0 * $ns ) | into int
+    $symbols | str substring $idx..$idx
+}
+
+#map output mandelbrot escape times to ascii art
+export def to_ascii []: list<list<int>> -> list<string> {
+    each {|$row| 
+        $row | each {|$i| $i | cnt2char} | str join
+    } | reverse 
+}
+
+
+export def escape_time [x: float y: float max_iter: int] : nothing -> int {
     mut z = [0.0 0.0]
     let c = [$x $y]
     mut iter = 0
@@ -37,8 +52,8 @@ def escape_time [x: float y: float max_iter: int] : nothing -> int {
 #The area covered can be specified through flags ll (lower left) and ur (upper right).
 #Escape times can be converted to an image, e.g. with gnuplot
 export def main [
-    --width: int = 1000
-    --height: int = 750
+    --width: int = 100
+    --height: int = 75    
     --ll: list<float> = [-1.2 0.20]
     --ur: list<float> = [-1.0 0.35]
 ] {
