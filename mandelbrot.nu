@@ -20,20 +20,22 @@ def complex-abs-squared [a] {
 
 export def cnt2char []: int -> string {
     let symbols = "MW2a_. "
-    let ns = ($symbols | str length) - 1
+    let ns = ($symbols | str length) 
     let idx = ($in / 255.0 * $ns ) | into int
     $symbols | str substring $idx..$idx
 }
 
 #map output mandelbrot escape times to ascii art
-export def to_ascii []: list<list<int>> -> list<string> {
+#
+#converts list of rows of int to list of rows of string
+export def to-ascii []: list<list<int>> -> list<string> {
     each {|$row| 
         $row | each {|$i| $i | cnt2char} | str join
     } | reverse 
 }
 
 
-export def escape_time [x: float y: float max_iter: int] : nothing -> int {
+export def escape-time [x: float y: float max_iter: int] : nothing -> int {
     mut z = [0.0 0.0]
     let c = [$x $y]
     mut iter = 0
@@ -56,7 +58,7 @@ export def main [
     --height: int = 75    
     --ll: list<float> = [-1.2 0.20]
     --ur: list<float> = [-1.0 0.35]
-] {
+]: nothing -> list<list<int>> {
     if ($ll | length) != 2 or ($ur | length) != 2 {
         error "Both --ll and --ur must be lists with exactly two float elements"
     }
@@ -66,7 +68,7 @@ export def main [
     $height..0  
         | each {
             |y| 0..$width 
-                | each {|x| escape_time ($ll.0 + $x * $fwidth / $width) ($ur.1 - $y * $fheight / $height ) $M}
+                | each {|x| escape-time ($ll.0 + $x * $fwidth / $width) ($ur.1 - $y * $fheight / $height ) $M}
         } 
         | collect
 }
