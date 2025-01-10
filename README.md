@@ -15,7 +15,7 @@ Mandelbrot in Nushell. Other languages:
 Run
 ---
 ```
-    > use mandelbrot.nu to-ascii
+  > use mandelbrot.nu to-ascii
 ```
 
 ```
@@ -44,13 +44,13 @@ Run
 ```
 
 ```
-    > mandelbrot --width 10 --height 5 | to text
-    237, 233, 156, 0, 0, 0, 0, 0, 0, 0, 0
-    239, 231, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    242, 233, 201, 0, 135, 234, 235, 154, 208, 207, 0
-    226, 235, 191, 235, 215, 242, 241, 241, 235, 233, 196
-    237, 228, 241, 242, 244, 245, 245, 244, 241, 220, 240
-    246, 246, 246, 247, 247, 247, 246, 245, 227, 243, 245
+  > mandelbrot --width 10 --height 5 | to text
+  237, 233, 156, 0, 0, 0, 0, 0, 0, 0, 0
+  239, 231, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  242, 233, 201, 0, 135, 234, 235, 154, 208, 207, 0
+  226, 235, 191, 235, 215, 242, 241, 241, 235, 233, 196
+  237, 228, 241, 242, 244, 245, 245, 244, 241, 220, 240
+  246, 246, 246, 247, 247, 247, 246, 245, 227, 243, 245
 ```
 
 ```
@@ -137,11 +137,11 @@ Run
 
 
 ```
-    > timeit {mandelbrot --width 1000 --height 750 | to text | save -f image.txt}
-    5min 35sec 491ms 37µs 625ns
+  > timeit {mandelbrot --width 1000 --height 750 | to text | save -f image.txt}
+  5min 35sec 491ms 37µs 625ns
 
-    > gnuplot topng.gp
-    > ^open mandelbrot.png
+  > gnuplot topng.gp
+  > ^open mandelbrot.png
 ```
 ![PNG](https://raw.githubusercontent.com/jesper-olsen/mandelbrot-nu/main/mandelbrot.png)
 
