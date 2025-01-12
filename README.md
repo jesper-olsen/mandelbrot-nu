@@ -15,7 +15,8 @@ Mandelbrot in Nushell. Other languages:
 Run
 ---
 ```
-> use mandelbrot.nu to-ascii
+> use mandelbrot.nu 
+> use mandelbrot to-ascii
 ```
 
 ```
