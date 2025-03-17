@@ -8,7 +8,8 @@ Mandelbrot in Nushell. Other languages:
 * [Erlang](https://github.com/jesper-olsen/mandelbrot_erl) 
 * [Python](https://github.com/jesper-olsen/mandelbrot-py) 
 * [Mojo](https://github.com/jesper-olsen/mandelbrot-mojo) 
-* [Fortran](https://github.com/jesper-olsen/mandelbrot-f) 
+* [Fortran](https://github.com/jesper-olsen/mandelbrot-f)
+* [Awk](https://github.com/jesper-olsen/mandelbrot-awk)
 
 
 
