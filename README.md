@@ -10,6 +10,7 @@ Mandelbrot in Nushell. Other languages:
 * [Mojo](https://github.com/jesper-olsen/mandelbrot-mojo) 
 * [Fortran](https://github.com/jesper-olsen/mandelbrot-f)
 * [Awk](https://github.com/jesper-olsen/mandelbrot-awk)
+* [Tcl](https://github.com/jesper-olsen/mandelbrot-tcl)
 
 
 
