@@ -1,20 +1,38 @@
+# Mandelbrot in Nushell 
 
-mandelbrot-nu
-==============
+This repository contains a nushell implementation for generating visualizations of the Mandelbrot set. It is part of a larger project comparing implementations across various programming languages.
 
-Mandelbrot in Nushell. Other languages: 
+The script can render the Mandelbrot set directly to the terminal as ASCII art or produce a data file for `gnuplot` to generate a high-resolution PNG image.
 
-* [Rust](https://github.com/jesper-olsen/mandelbrot-rs) 
-* [Erlang](https://github.com/jesper-olsen/mandelbrot_erl) 
-* [Python](https://github.com/jesper-olsen/mandelbrot-py) 
-* [Mojo](https://github.com/jesper-olsen/mandelbrot-mojo) 
-* [Fortran](https://github.com/jesper-olsen/mandelbrot-f)
-* [Awk](https://github.com/jesper-olsen/mandelbrot-awk)
-* [Tcl](https://github.com/jesper-olsen/mandelbrot-tcl)
-* [R](https://github.com/jesper-olsen/mandelbrot-R)
-* [Lua](https://github.com/jesper-olsen/mandelbrot-lua)
+### Other Language Implementations
+
+This project compares the performance and features of Mandelbrot set generation in different languages.
+
+| Language    | Repository                                                         | Single Thread   | Multi-Thread |
+| :--------   | :----------------------------------------------------------------- | ---------------:| -----------: |
+| Awk         | [mandelbrot-awk](https://github.com/jesper-olsen/mandelbrot-awk)     |           805.9 |              |
+| C           | [mandelbrot-c](https://github.com/jesper-olsen/mandelbrot-c)       |             9.1 |              |
+| Erlang      | [mandelbrot_erl](https://github.com/jesper-olsen/mandelbrot_erl)   |            56.0 |           16 |
+| Fortran     | [mandelbrot-f](https://github.com/jesper-olsen/mandelbrot-f)       |            11.6 |              |
+| Lua         | [mandelbrot-lua](https://github.com/jesper-olsen/mandelbrot-lua)   |           158.2 |              |
+| Mojo        | [mandelbrot-mojo](https://github.com/jesper-olsen/mandelbrot-mojo) |                 |              |
+| **Nushell** | [mandelbrot-nu](https://github.com/jesper-olsen/mandelbrot-nu)     |   (est) 11488.5 |              |
+| Python      | [mandelbrot-py](https://github.com/jesper-olsen/mandelbrot-py)     |    (pure) 177.2 | (jax)    7.5 |
+| R           | [mandelbrot-R](https://github.com/jesper-olsen/mandelbrot-R)       |           562.0 |              |
+| Rust        | [mandelbrot-rs](https://github.com/jesper-olsen/mandelbrot-rs)     |             8.9 |          2.5 |
+| Tcl         | [mandelbrot-tcl](https://github.com/jesper-olsen/mandelbrot-tcl)   |           706.1 |              |
 
 
+---
+
+## Prerequisites
+
+You will need the following installed to run this script:
+
+1.  **Nushell**: Install with cargo - The script was tested with version 0.107.0
+2.  **Gnuplot**: Required *only* for generating PNG images from the data file.
+
+---
 
 
 Run
@@ -144,7 +162,7 @@ Input/output types:
 
 ```
 > timeit {mandelbrot --width 1000 --height 750 | to text | save -f image.txt}
-5min 35sec 491ms 37µs 625ns
+5min 45sec 965ms 614µs 667ns
 
 > gnuplot topng.gp
 > ^open mandelbrot.png
@@ -154,7 +172,7 @@ Input/output types:
 ```
 > version | select version build_target
 ╭──────────────┬──────────────────────╮
-│ version      │ 0.101.1              │
+│ version      │ 0.107.0              │
 │ build_target │ aarch64-apple-darwin │
 ╰──────────────┴──────────────────────╯
 ```

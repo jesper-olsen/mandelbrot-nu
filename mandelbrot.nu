@@ -60,8 +60,9 @@ export def main [
     --ur: list<float> = [-1.0 0.35]
 ]: nothing -> list<list<int>> {
     if ($ll | length) != 2 or ($ur | length) != 2 {
-        error "Both --ll and --ur must be lists with exactly two float elements"
+        error make { msg: "Both --ll and --ur must be lists with exactly two float elements" }
     }
+
     let fwidth = $ur.0 - $ll.0
     let fheight = $ur.1 - $ll.1
     let M = 255
