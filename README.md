@@ -10,22 +10,22 @@ The script can render the Mandelbrot set directly to the terminal as ASCII art o
 This project compares the performance and features of Mandelbrot set generation in different languages.
 Single Thread/Multi-thread shows the number of seconds it takes to do a 5000x5000 calculation.
 
-
-| Language    | Repository                                                         | Single Thread   | Multi-Thread |
-| :--------   | :----------------------------------------------------------------- | ---------------:| -----------: |
-| Awk         | [mandelbrot-awk](https://github.com/jesper-olsen/mandelbrot-awk)   |           805.9 |              |
-| C           | [mandelbrot-c](https://github.com/jesper-olsen/mandelbrot-c)       |             6.9 |          1.4 |
-| Erlang      | [mandelbrot_erl](https://github.com/jesper-olsen/mandelbrot_erl)   |            56.0 |           16 |
-| Fortran     | [mandelbrot-f](https://github.com/jesper-olsen/mandelbrot-f)       |            11.6 |              |
-| Lua         | [mandelbrot-lua](https://github.com/jesper-olsen/mandelbrot-lua)   |           158.2 |              |
-| Mojo        | [mandelbrot-mojo](https://github.com/jesper-olsen/mandelbrot-mojo) |            39.6 |         39.2 |
-| **Nushell** | [mandelbrot-nu](https://github.com/jesper-olsen/mandelbrot-nu)     |   (est) 11488.5 |              |
-| Python      | [mandelbrot-py](https://github.com/jesper-olsen/mandelbrot-py)     |    (pure) 177.2 | (jax)    7.5 |
-| R           | [mandelbrot-R](https://github.com/jesper-olsen/mandelbrot-R)       |           562.0 |              |
-| Rust        | [mandelbrot-rs](https://github.com/jesper-olsen/mandelbrot-rs)     |             8.4 |          2.2 |
-| Tcl         | [mandelbrot-tcl](https://github.com/jesper-olsen/mandelbrot-tcl)   |           706.1 |              |
-| Zig         | [mandelbrot-zig](https://github.com/jesper-olsen/mandelbrot-zig)   |             8.6 |          1.9 |
-
+| Language    | Repository                                                           | Single Thread   | Multi-Thread | Simd | Multi-Thread + Simd |
+| :--------   | :------------------------------------------------------------------- | ---------------:| -----------: | ----:| ------------------: |
+| Awk         | [mandelbrot-awk](https://github.com/jesper-olsen/mandelbrot-awk)     |           417.9 |              |      |                     |
+| C           | [mandelbrot-c](https://github.com/jesper-olsen/mandelbrot-c)         |             3.6 |          0.6 |  0.7 |               0.2   |
+| Erlang      | [mandelbrot_erl](https://github.com/jesper-olsen/mandelbrot_erl)     |            35.6 |          8.3 |      |                     |
+| Fortran     | [mandelbrot-f](https://github.com/jesper-olsen/mandelbrot-f)         |             4.5 |              |      |                     |
+| Lua         | [mandelbrot-lua](https://github.com/jesper-olsen/mandelbrot-lua)     |            33.2 |              |      |                     |
+| Mojo        | [mandelbrot-mojo](https://github.com/jesper-olsen/mandelbrot-mojo)   |             3.8 |          1.2 |  0.7 |               0.4   |
+| **Nushell** | [mandelbrot-nu](https://github.com/jesper-olsen/mandelbrot-nu)       |         17186.6 |              |      |                     |
+| Odin        | [mandelbrot-odin](https://github.com/jesper-olsen/mandelbrot-odin)   |             4.4 |              |      |                     |
+| Python      | [mandelbrot-py](https://github.com/jesper-olsen/mandelbrot-py)       |     (pure) 93.3 | (jax)    5.9 |      |                     |
+| R           | [mandelbrot-R](https://github.com/jesper-olsen/mandelbrot-R)         |           335.0 |              |      |                     |
+| Rust        | [mandelbrot-rs](https://github.com/jesper-olsen/mandelbrot-rs)       |             4.7 |          1.3 |      |                     |
+| Swift       | [mandelbrot-swift](https://github.com/jesper-olsen/mandelbrot-swift) |             4.5 |          1.2 |  1.3 |               0.7   |
+| Tcl         | [mandelbrot-tcl](https://github.com/jesper-olsen/mandelbrot-tcl)     |           306.9 |              |      |                     |
+| Zig         | [mandelbrot-zig](https://github.com/jesper-olsen/mandelbrot-zig)     |             4.9 |          0.9 |  0.7 |               0.3   |
 
 ---
 
@@ -33,7 +33,7 @@ Single Thread/Multi-thread shows the number of seconds it takes to do a 5000x500
 
 You will need the following installed to run this script:
 
-1.  **Nushell**: Install with cargo - The script was tested with version 0.107.0
+1.  **Nushell**: Install with cargo - The script was tested with version 0.114.2 
 2.  **Gnuplot**: Required *only* for generating PNG images from the data file.
 
 ---
@@ -166,7 +166,7 @@ Input/output types:
 
 ```
 > timeit {mandelbrot --width 1000 --height 750 | to text | save -f image.txt}
-5min 45sec 965ms 614µs 667ns
+8min 35sec 615ms 326µs 917ns
 
 > gnuplot topng.gp
 > ^open mandelbrot.png
@@ -174,9 +174,9 @@ Input/output types:
 ![PNG](https://raw.githubusercontent.com/jesper-olsen/mandelbrot-nu/main/mandelbrot.png)
 
 ```
-> version | select version build_target
+version | select version build_target
 ╭──────────────┬──────────────────────╮
-│ version      │ 0.107.0              │
+│ version      │ 0.114.2              │
 │ build_target │ aarch64-apple-darwin │
 ╰──────────────┴──────────────────────╯
 ```
